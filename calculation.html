@@ -17,7 +17,7 @@
      
         #btn {
           width: 90%;
-          height: 400px;
+          height: 420px;
           margin: 10px auto 0 auto;
           background-color: rgba(240, 243, 245, 0.98);
         }
@@ -47,25 +47,66 @@
             <button>1</button>
             <button>2</button>
             <button>3</button>
+            <button>+</button>
             <button>4</button>
             <button>5</button>
             <button>6</button>
+            <button>-</button>
             <button>7</button>
             <button>8</button>
             <button>9</button>
-            <button>+</button>
-            <button>-</button>
             <button>×</button>
+            <button>.</button>
+            <button>0</button>
+            <button>%</button>
             <button>÷</button>
-            <button>!</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
+            <button>(</button>
+            <button>)</button>
+            <button>x!</button>
+            <button>C</button>
+            <button>sin</button>
+            <button>cos</button>
+            <button>tan</button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button style="width:96%;">=</button>
         </div>
   
     <script>
+      //获取按键区域的元素
+      var btn = document.getElementById('btn');
+      //绑定按键函数
+      btn.onclick = function(e){
+        if(e.target.nodeName === "BUTTON"){
+          //获取显示屏元素
+          var text = document.getElementById('text');
+          //判断点击的按钮并选择:
+          switch(e.target.innerHTML){
+            //C:清空屏幕
+            case 'C':
+              text.value='';
+              break;
+             //=:计算结果
+            case '=':
+              var str=text.value;
+               //显示内容
+               try{
+                text.value=eval(str)
+               } catch(err){
+                text.value=err;
+               }
+               break;
+            case '%':
+               
+               //其他按钮:显示在屏幕上
+            default:
+               text.value+=e.target.innerHTML;
+          }
+        }
+      } 
        
     </script>
 </body>
