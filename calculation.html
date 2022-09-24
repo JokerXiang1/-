@@ -5,11 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mycalc</title>
+
     <style>
+      html {
+        background: linear-gradient(to right, #040404, #000000);
+        height: 100%;
+    }
         .calc {
           width: 400px;
           height: 500px;
-          border: 2px solid #d30c7361;
+          border: 2px solid #fbfbfb61;
           border-radius: 10px;
           margin: auto;
           background-color: lightgray;
@@ -38,11 +43,14 @@
           color: rgb(10, 0, 0);
           cursor: pointer;
         }
+        #bg
       </style>
 </head>
 <body>
+  
+  
     <div class="calc">
-        <textarea readonly="" name="" id="text" style="width: 90%;height: 30px;display: block;margin: 20px auto 0 auto;font-size: 24px;"></textarea>
+        <textarea readonly="" name="" id="text" style="width: 90%;height: 30px;display: block;margin: 20px auto 0 auto;font-size: 24px; "></textarea>
         <div id="btn">
             <button>1</button>
             <button>2</button>
@@ -62,12 +70,12 @@
             <button>/</button>
             <button>(</button>
             <button>)</button>
-            <button>x!</button>
+            <button>!</button>
             <button>C</button>
             <button>sin</button>
             <button>cos</button>
             <button>tan</button>
-            <button></button>
+            <button>del</button>
             <button></button>
             <button></button>
             <button></button>
@@ -80,6 +88,7 @@
       var btn = document.getElementById('btn');
       //绑定按键函数
       btn.onclick = function(e){
+        
         if(e.target.nodeName === "BUTTON"){
           //获取显示屏元素
           var text = document.getElementById('text');
@@ -92,6 +101,7 @@
              //=:计算结果
             case '=':
               var str=text.value;
+              
                //显示内容
                try{
                 text.value=eval(str)
@@ -100,7 +110,35 @@
                }
                break;
             case '%':
+              var num =text.value;             
+              num=parseFloat(num);
+              num=num/100;
+              text.value=num;
+              break;
+              
+              
+
+              
             case 'sin':
+            case 'cos':
+            case 'tan': 
+            case '!': 
+              text.value+=e.target.innerHTML;//23!,string
+              console.log(text.value,typeof(text.value))
+              let exp1=parseInt(text.value);
+              console.log(exp1,typeof(exp1));
+              for (var i=1,cj=1;i<=exp1;i++){
+                  cj*=i;
+              }
+              text.value=cj;
+              break;
+              
+            case 'del':
+               let exp=text.value;
+               exp=text.value.substring(0,exp.length-1);          
+               text.value=exp;
+               break;
+               
                
                //其他按钮:显示在屏幕上
             default:
