@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mycalc</title>
+    <style>
+        .calc {
+          width: 400px;
+          height: 500px;
+          border: 2px solid #d30c7361;
+          border-radius: 10px;
+          margin: auto;
+          background-color: lightgray;
+        }
+     
+        #btn {
+          width: 90%;
+          height: 420px;
+          margin: 10px auto 0 auto;
+          background-color: rgba(240, 243, 245, 0.98);
+        }
+     
+        #btn button {
+          width: 31%;
+          height: 35px;
+          margin: 15px 0 0 3px;
+          background-color: rgb(255, 255, 255);
+          border: 1px solid rgb(13, 179, 234);
+          border-radius: 5px;
+          font-size: 18px;
+          font-weight: bolder;
+        }
+     
+        #btn button:hover {
+          background-color: #999;
+          color: rgb(10, 0, 0);
+          cursor: pointer;
+        }
+      </style>
+</head>
+<body>
+    <div class="calc">
+        <textarea readonly="" name="" id="text" style="width: 90%;height: 30px;display: block;margin: 20px auto 0 auto;font-size: 24px;"></textarea>
+        <div id="btn">
+            <button>是</button>
+            <button>干嘛</button>
+            <button>丁真</button>
+           
+            <button>芝士</button>
+            <button>我</button>
+            <button>食不食</button>
+            
+            <button>？</button>
+            <button>ikun</button>
+            <button>你</button>
+          
+            <button style="width:97%;">C</button>
+            <button style="width:97%;">=</button>
+        </div>
+  
+    <script>
+      //获取按键区域的元素
+      var btn = document.getElementById('btn');
+      //绑定按键函数
+      btn.onclick = function(e){
+        if(e.target.nodeName === "BUTTON"){
+          //获取显示屏元素
+          var text = document.getElementById('text');
+          //判断点击的按钮并选择:
+          switch(e.target.innerHTML){
+            
+            //C:清空屏幕
+            case 'C':
+              text.value='';
+              break;
+             //=:计算结果
+            case '=':
+              text.value='啊对对对';
+              break;
+            default:
+               text.value+=e.target.innerHTML;
+          }
+        }
+      } 
+       
+    </script>
+</body>
+</html>
