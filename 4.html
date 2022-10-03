@@ -1,110 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mycalc</title>
-    <style>
-        .calc {
-          width: 400px;
-          height: 500px;
-          border: 2px solid #d30c7361;
-          border-radius: 10px;
-          margin: auto;
-          background-color: lightgray;
-        }
-     
-        #btn {
-          width: 90%;
-          height: 420px;
-          margin: 10px auto 0 auto;
-          background-color: rgba(240, 243, 245, 0.98);
-        }
-     
-        #btn button {
-          width: 31%;
-          height: 35px;
-          margin: 15px 0 0 3px;
-          background-color: rgb(255, 255, 255);
-          border: 1px solid rgb(13, 179, 234);
-          border-radius: 5px;
-          font-size: 18px;
-          font-weight: bolder;
-        }
-     
-        #btn button:hover {
-          background-color: #999;
-          color: rgb(10, 0, 0);
-          cursor: pointer;
-        }
-      </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mycalc</title>
+  <link href="./calculation.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-    <div class="calc">
-        <textarea readonly="" name="" id="text" style="width: 90%;height: 30px;display: block;margin: 20px auto 0 auto;font-size: 24px;"></textarea>
-        <div id="btn">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-           
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            
-            <button>总体容量</button>
-            <button>样本均值</button>
-            <button>样本方差</button>
-            <button style="width:48%;">置信度</button>
-            <button style="width:47%;">估计精度</button>
-            <button style="width:97%;">C</button>
-            <button style="width:97%;">=</button>
-        </div>
-  
+  <div class="calc">
+    <textarea readonly="" name="" id="text"
+      style="width: 90%;height: 30px;display: block;margin: 20px auto 0 auto;font-size: 24px;"></textarea>
+    <div id="btn">
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>.</button>
+
+      <button style="width: 48%;">总体容量</button>
+      <button style="width: 48%;">样本均值</button>
+      <button style="width: 48%;">样本均值</button>
+      <button style="width: 48%;">样本方差</button>
+      <button style="width:48%;">置信度</button>
+      <button style="width:48%;">估计精度</button>
+      <button style="width:48%;">C</button>
+      <button style="width:97%;">=</button>
+      <button style="width:97%;" onclick="window.location.href='1.html'">返回</button>
+    </div>
+
     <script>
       //获取按键区域的元素
       var btn = document.getElementById('btn');
       //绑定按键函数
-      btn.onclick = function(e){
-        if(e.target.nodeName === "BUTTON"){
+      btn.onclick = function (e) {
+        if (e.target.nodeName === "BUTTON") {
           //获取显示屏元素
           var text = document.getElementById('text');
           //判断点击的按钮并选择:
-          switch(e.target.innerHTML){
+          switch (e.target.innerHTML) {
             case 'N':
-                var str=text.value;
-                //显示内容
-                try{
-                    text.value="N="+eval(str)
-                } catch(err){
-                    text.value=err;
-                }
-                break;
+              var str = text.value;
+              //显示内容
+              try {
+                text.value = "N=" + eval(str)
+              } catch (err) {
+                text.value = err;
+              }
+              break;
             //C:清空屏幕
             case 'C':
-              text.value='';
+              text.value = '';
               break;
-             //=:计算结果
+            //=:计算结果
             case '=':
-              var str=text.value;
-               //显示内容
-               try{
-                text.value=eval(str)
-               } catch(err){
-                text.value=err;
-               }
-               break;
-               //其他按钮:显示在屏幕上
+              var str = text.value;
+              //显示内容
+              try {
+                text.value = eval(str)
+              } catch (err) {
+                text.value = err;
+              }
+              break;
+            //其他按钮:显示在屏幕上
             default:
-               text.value+=e.target.innerHTML;
+              text.value += e.target.innerHTML;
           }
         }
-      } 
-       
+      }
+
     </script>
 </body>
+
 </html>
