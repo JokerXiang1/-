@@ -92,7 +92,12 @@
               let exp3 = parseFloat(text.value);
               text.value = Math.sqrt(exp3);
               break;
+            case 'del':
+              let exp = text.value;
+              exp = text.value.substring(0, exp.length - 1);
+              text.value = exp;
 
+              break;
             //其他按钮:显示在屏幕上
             default:
               text.value += e.target.innerHTML;
