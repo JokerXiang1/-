@@ -1,38 +1,27 @@
 body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    height: 100vh;
+    background-image: url(./s12.png);
+    background-color: black;
+    background-position: center;
+    background-attachment: scroll;
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
 
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 .calc {
     width: 400px;
     height: 500px;
-    border: 2px solid #fbfbfb61;
+    border: 2px solid #030000ed;
     border-radius: 10px;
     margin: auto;
-    background: seashell;
+    background: rgba(8, 75, 182, 0);
 }
 
 #btn {
     width: 90%;
     height: 420px;
     margin: 10px auto 0 auto;
-    background: blanchedalmond;
+    background: rgba(251, 251, 251, 0.5);
+
 }
 
 #btn button {
