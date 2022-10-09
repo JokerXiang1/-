@@ -25,7 +25,8 @@
       <button>7</button>
       <button>8</button>
       <button>9</button>
-
+      <button>0</button>
+      <button>.</button>
       <button>N</button>
       <button>I/Y</button>
       <button>PV</button>
@@ -33,7 +34,8 @@
       <button style="width:47%;">FV</button>
       <button style="width:97%;">C</button>
       <button style="width:97%;">=</button>
-      <button style="width:97%;" onclick="window.location.href='1.html'">返回</button>
+      <button style="width:97%;" onclick="window.location.href='0.html'">返回</button>
+      
     </div>
 
     <script>
@@ -45,38 +47,91 @@
           //获取显示屏元素
           var text = document.getElementById('text');
           //判断点击的按钮并选择:
+          
+         
+         
           switch (e.target.innerHTML) {
             case 'N':
-              var str = text.value;
-              //显示内容
-              try {
-                text.value = "N=" + eval(str)
-              } catch (err) {
-                text.value = err;
-              }
-              break;
+              n=document.getElementById('text').value;
+              replay("N=",n);
+            break;
+            case 'I/Y':
+                
+              i=document.getElementById('text').value; 
+              replay("I/Y=",i);
+            break;
+            case 'PMT':
+              pmt=document.getElementById('text').value;
+              replay("PMT=",pmt);
+            break;
+            case 'PV':
+              pv=document.getElementById('text').value;
+              replay("PV=",pv);
+            break;
+            case 'FV':
+              fv=document.getElementById('text').value;
+              replay("FV=",fv);
+            break;
+
+
             //C:清空屏幕
             case 'C':
               text.value = '';
-              break;
+            break;
+
+
             //=:计算结果
             case '=':
-              var str = text.value;
+              var cal=judge(pv,pmt,n,i,fv);
+              cal=calPV(n,i,pmt,fv);
               //显示内容
-              try {
-                text.value = eval(str)
-              } catch (err) {
-                text.value = err;
-              }
+              replay("参数值为",cal);
               break;
             //其他按钮:显示在屏幕上
             default:
-              text.value += e.target.innerHTML;
+            text.value += e.target.innerHTML;
           }
         }
       }
+      function replay(str, p) {
+        try {
+          text.value = str + eval(p)
+        } catch (err) {
+          text.value = err;
+        }
+        return;
+      }
+      function judge(pv,pmt,n,i,fv){
+        
 
+
+      }
+      function calFV(pv,pmt,n,i){
+        I=Math.pow(1+i,n);
+        fv=pv*I-pmt*(I-1)/i;
+        return fv;
+      }
+      function calPV(n,i,pmt,fv){
+        I=Math.pow(1+i,n);
+        pv=pmt*(1-1/I)/i-fv/I;
+        return pv;
+      }
+      function calPMT(pv,fv,n,i){
+        I=Math.pow(1+i,n);
+        pmt=i*(I*pv-fv)/(I-1);
+        return pmt;
+      }
+      function calN(pv,fv,i,pmt){
+        a=(fv-pmt/i)/(pv-pmt/i);
+        n=Math.log(a)/Math.log(1+i);
+        return n;
+      }
+      /*function calIY(pv,fv,pmt,n){
+        iy=
+        return iy;
+      }*/
     </script>
+
 </body>
 
 </html>

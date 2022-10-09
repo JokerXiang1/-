@@ -1,10 +1,10 @@
 body {
-    background-image: url(./s12.png);
-    background-color: black;
-    background-position: center;
-    background-attachment: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(0deg, #fff 50%, #2196f3);
 }
-
 
 
 .calc {
@@ -18,7 +18,7 @@ body {
 
 #btn {
     width: 90%;
-    height: 420px;
+    height: 400px;
     margin: 10px auto 0 auto;
     background: rgba(251, 251, 251, 0.5);
 
