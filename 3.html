@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mycalc</title>
+  <link href="./calculation.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="calc">
+    <textarea readonly="" name="" id="text"
+      style="width: 90%;height: 30px;display: block;margin: 20px auto 0 auto;font-size: 24px;"></textarea>
+    <div id="btn">
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>0</button>
+
+      <button style="width: 48%;">总体容量</button>
+
+      <button style="width: 48%;">样本均值</button>
+      <button style="width: 48%;">样本方差</button>
+      <button style="width:48%;">临界值</button>
+      <button style="width:48%;">估计精度</button>
+      <button style="width:48%;">C</button>
+      <button style="width:48%;">.</button>
+      <button style="width:97%;">=</button>
+      <button style="width:97%;" onclick="window.location.href='0.html'">返回</button>
+    </div>
+
+    <script>
+      //获取按键区域的元素
+      var btn = document.getElementById('btn');
+      //绑定按键函数
+      btn.onclick = function (e) {
+        if (e.target.nodeName === "BUTTON") {
+          //获取显示屏元素
+          var text = document.getElementById('text');
+          //判断点击的按钮并选择:
+
+
+          switch (e.target.innerHTML) {
+            case '总体容量':
+              N = document.getElementById('text').value;
+              replay("总体容量=", N);
+
+              break;
+            case '样本均值':
+              y = document.getElementById('text').value;
+              replay("样本均值=", y)
+
+              break;
+            case '样本方差':
+              s = document.getElementById('text').value;
+              replay("样本方差=", s)
+              break;
+            case '估计精度':
+              r = document.getElementById('text').value;
+              replay("估计精度=", r)
+              break;
+            case '临界值':
+              Con = document.getElementById('text').value;
+              replay("临界值=", Con)
+              break;
+            //C:清空屏幕
+            case 'C':
+              text.value = '';
+
+              break;
+            //=:计算结果
+            case '=':
+              var n = cal(N, y, s, r, Con);
+              //显示内容
+              replay("抽样数量为", n)
+              break;
+            //其他按钮:显示在屏幕上
+            default:
+              text.value += e.target.innerHTML;
+          }
+        }
+      }
+      function replay(str, p) {
+        try {
+          text.value = str + eval(p)
+        } catch (err) {
+          text.value = err;
+        }
+        return;
+      }
+      function cal(N, y, s, r, Con) {
+        n0 = Con * Con * s / r / y / r / y;
+        n = n0 / (1 + n0 / N);
+        return n;
+      }
+    </script>
+</body>
+
+</html>
