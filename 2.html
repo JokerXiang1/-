@@ -26,15 +26,18 @@
       <button>8</button>
       <button>9</button>
       <button>0</button>
-      <button  style="width:47%;">.</button>
+      <button  style="width:46%;">.</button>
       <button style="width:30%;">N</button>
-      <button style="width:30%;">I/Y</button>
+      <button style="width:30.5%;">I/Y</button>
       <button style="width:30%;">PV</button>
-      <button style="width:47%;">PMT</button>
+      <button style="width:46%;">PMT</button>
       <button style="width:47%;">FV</button>
-      <button style="width:97%;">C</button>
-      <button style="width:97%;">=</button>
-      <button style="width:97%;" onclick="window.location.href='0.html'">返回</button>
+      <button style="width:95%;">C</button>
+      <button style="width:22%;">FV=</button>
+      <button style="width:22%;">PV=</button>
+      <button style="width:23%;">PMT=</button>
+      <button style="width:22%;">N=</button>
+      <button style="width:95.6%;" onclick="window.location.href='0.html'">返回</button>
       
     </div>
 
@@ -81,11 +84,32 @@
 
 
             //=:计算结果
-            case '=':
-              var cal=judge(pv,pmt,n,i,fv);
-              cal=calPV(n,i,pmt,fv);
+            case 'FV=':
+              var a=calFV(pv,pmt,n,i);
+              
               //显示内容
-              replay("参数值为",cal);
+              replay("FV=",a);
+              break;
+            //其他按钮:显示在屏幕上
+            case 'PV=':
+              var b=calPV(n,i,pmt,fv);
+              
+              //显示内容
+              replay("PV=",b);
+              break;
+            //其他按钮:显示在屏幕上
+            case 'PMT=':
+              var c=calPMT(pv,fv,n,i);
+              
+              //显示内容
+              replay("PMT=",c);
+              break;
+            //其他按钮:显示在屏幕上
+            case 'N=':
+              var d=calN(pv,fv,i,pmt);
+              
+              //显示内容
+              replay("N=",d);
               break;
             //其他按钮:显示在屏幕上
             default:
@@ -126,10 +150,7 @@
         n=Math.log(a)/Math.log(1+i);
         return n;
       }
-      /*function calIY(pv,fv,pmt,n){
-        iy=
-        return iy;
-      }*/
+    
     </script>
 
 </body>
