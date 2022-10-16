@@ -90,7 +90,7 @@
         fv = inputdom5.value;
 
         I = Math.pow(1 + i, n);
-        pv = pmt * (1 - 1 / I) / i - fv / I;
+        pv = pmt * (1 - 1 / I) / i + fv / I;
 
         document.getElementById('demo').innerHTML = pv;
       } function funFV() {
