@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>计算抽样数量</title>
+    <link rel="stylesheet" href="3.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div>已知总体方差</div>
+        <div class="input-data">
+            <input type="text" required id="name1">
+            <div class="underline"></div>
+            <label>样本均值</label>
+        </div>
+
+        <div class="input-data">
+            <input type="text" required id="name2">
+            <div class="underline"></div>
+            <label>Z(查表可得)</label>
+        </div>
+        <div class="input-data">
+            <input type="text" required id="name3">
+            <div class="underline"></div>
+            <label>标准差</label>
+        </div>
+        <div class="input-data">
+            <input type="text" required id="name4">
+            <div class="underline"></div>
+            <label>样本个数</label>
+        </div>
+
+        <button class="btn" onclick="fun()">计算置信区间</button>
+        <button class="btn" onclick="showing2()">正太分布表</button>
+        <p id="demo2"></p>
+        <img src="正态分布表.png" class="demo5" id="test2">
+        <div>未知总体方差</div>
+        <div class="input-data">
+            <input type="text" required id="name5">
+            <div class="underline"></div>
+            <label>样本均值</label>
+        </div>
+
+        <div class="input-data">
+            <input type="text" required id="name6">
+            <div class="underline"></div>
+            <label>t(查表可得)</label>
+        </div>
+        <div class="input-data">
+            <input type="text" required id="name7">
+            <div class="underline"></div>
+            <label>标准差</label>
+        </div>
+        <div class="input-data">
+            <input type="text" required id="name8">
+            <div class="underline"></div>
+            <label>样本个数</label>
+        </div>
+        <button class="btn" onclick="fun2()">计算置信区间</button>
+        <button class="btn" onclick="showing()">t分位分布表</button>
+
+        <button class="btn" onclick="window.location.href='0.html'">返回</button>
+        <p id="demo3"></p>
+        <img src="t分布.png" class="demo4" id="test">
+
+        <script>
+            var inputdom1 = document.getElementById("name1");
+            var inputdom2 = document.getElementById("name2");
+            var inputdom3 = document.getElementById("name3");
+            var inputdom4 = document.getElementById("name4");
+            var inputdom5 = document.getElementById("name5");
+            var inputdom6 = document.getElementById("name6");
+            var inputdom7 = document.getElementById("name7");
+            var inputdom8 = document.getElementById("name8");
+            function fun() {
+                X = inputdom1.value;
+                Z = inputdom2.value;
+                σ = inputdom3.value;
+                n = inputdom4.value;
+                a = Math.sqrt(n);
+                result1 = Number(X) - Z * σ / a;
+                result2 = Number(X) + Z * σ / a;     
+                document.getElementById('demo2').innerHTML = "(" + result1 + "," + result2 + ")"
+            }
+            function fun2() {
+                X = Number(inputdom5.value);
+                T = Number(inputdom6.value);
+                S = Number(inputdom7.value);
+                n = Number(inputdom8.value);
+                a = Math.sqrt(n);
+                result3 = X - T * S / a;
+                result4 = X + T * S / a;              
+                document.getElementById('demo3').innerHTML = "(" + result3 + "," + result4 + ")"
+            }
+            function showing() {
+                document.getElementById("test").style.display = "block";
+            }
+            function showing2() {
+                document.getElementById("test2").style.display = "block";
+            }
+
+        </script>
+</body>
+
+</html>

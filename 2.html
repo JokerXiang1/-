@@ -1,158 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mycalc</title>
-  <link href="./calculation.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <title>计算货币时间价值</title>
+  <link rel="stylesheet" href="3.css">
 </head>
+<style>
+  .wrapper {
+    width: 450px;
+    height: 400px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+</style>
 
 <body>
-  <div class="calc">
-    <textarea readonly="" name="" id="text"
-      style="width: 90%;height: 30px;display: block;margin: 20px auto 0 auto;font-size: 24px;"></textarea>
-    <div id="btn">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>0</button>
-      <button  style="width:46%;">.</button>
-      <button style="width:30%;">N</button>
-      <button style="width:30.5%;">I/Y</button>
-      <button style="width:30%;">PV</button>
-      <button style="width:46%;">PMT</button>
-      <button style="width:47%;">FV</button>
-      <button style="width:95%;">C</button>
-      <button style="width:22%;">FV=</button>
-      <button style="width:22%;">PV=</button>
-      <button style="width:23%;">PMT=</button>
-      <button style="width:22%;">N=</button>
-      <button style="width:95.6%;" onclick="window.location.href='0.html'">返回</button>
-      
+  <div class="wrapper">
+    <div class="input-data">
+      <input type="text" required id="name1">
+      <div class="underline"></div>
+      <label>N</label>
+    </div>
+    <div class="input-data">
+      <input type="text" required id="name2">
+      <div class="underline"></div>
+      <label>I/Y</label>
+    </div>
+    <div class="input-data">
+      <input type="text" required id="name3">
+      <div class="underline"></div>
+      <label>PMT</label>
+    </div>
+    <div class="input-data">
+      <input type="text" required id="name4">
+      <div class="underline"></div>
+      <label>PV</label>
+    </div>
+    <div class="input-data">
+      <input type="text" required id="name5">
+      <div class="underline"></div>
+      <label>FV</label>
     </div>
 
+    <button class="btn" onclick="funN()">计算N</button>
+    <button class="btn" onclick="funPMT()">计算PMT</button>
+    <button class="btn" onclick="funFV()">计算PV</button>
+    <button class="btn" onclick="funPV()">计算FV</button>
+    <button class="btn" onclick="window.location.href='0.html'">返回</button>
+    <p id="demo"></p>
     <script>
-      //获取按键区域的元素
-      var btn = document.getElementById('btn');
-      //绑定按键函数
-      btn.onclick = function (e) {
-        if (e.target.nodeName === "BUTTON") {
-          //获取显示屏元素
-          var text = document.getElementById('text');
-          //判断点击的按钮并选择:
-          
-         
-         
-          switch (e.target.innerHTML) {
-            case 'N':
-              n=document.getElementById('text').value;
-              replay("N=",n);
-            break;
-            case 'I/Y':
-                
-              i=document.getElementById('text').value; 
-              replay("I/Y=",i);
-            break;
-            case 'PMT':
-              pmt=document.getElementById('text').value;
-              replay("PMT=",pmt);
-            break;
-            case 'PV':
-              pv=document.getElementById('text').value;
-              replay("PV=",pv);
-            break;
-            case 'FV':
-              fv=document.getElementById('text').value;
-              replay("FV=",fv);
-            break;
+      var inputdom1 = document.getElementById("name1");
+      var inputdom2 = document.getElementById("name2");
+      var inputdom3 = document.getElementById("name3");
+      var inputdom4 = document.getElementById("name4");
+      var inputdom5 = document.getElementById("name5");
+      var text = document.getElementById("demo");
 
 
-            //C:清空屏幕
-            case 'C':
-              text.value = '';
-            break;
 
 
-            //=:计算结果
-            case 'FV=':
-              var a=calFV(pv,pmt,n,i);
-              
-              //显示内容
-              replay("FV=",a);
-              break;
-            //其他按钮:显示在屏幕上
-            case 'PV=':
-              var b=calPV(n,i,pmt,fv);
-              
-              //显示内容
-              replay("PV=",b);
-              break;
-            //其他按钮:显示在屏幕上
-            case 'PMT=':
-              var c=calPMT(pv,fv,n,i);
-              
-              //显示内容
-              replay("PMT=",c);
-              break;
-            //其他按钮:显示在屏幕上
-            case 'N=':
-              var d=calN(pv,fv,i,pmt);
-              
-              //显示内容
-              replay("N=",d);
-              break;
-            //其他按钮:显示在屏幕上
-            default:
-            text.value += e.target.innerHTML;
-          }
-        }
-      }
-      function replay(str, p) {
-        try {
-          text.value = str + eval(p)
-        } catch (err) {
-          text.value = err;
-        }
-        return;
-      }
-      function judge(pv,pmt,n,i,fv){
-        
 
+      function funN() {
+        i = inputdom2.value;
+        pmt = inputdom3.value;
+        pv = inputdom4.value;
+        fv = inputdom5.value;
+        a = (fv - pmt / i) / (pv - pmt / i);
+        n = Math.log(a) / Math.log(1 + i);
+        document.getElementById('demo').innerHTML = n;
+      }
+      function funPMT() {
+        i = inputdom2.value;
+        n = inputdom1.value;
+        pv = inputdom4.value;
+        fv = inputdom5.value;
 
+        I = Math.pow(1 + i, n);
+        pmt = i * (I * pv - fv) / (I - 1);
+
+        document.getElementById('demo').innerHTML = pmt;
+      } function funPV() {
+        n = inputdom1.value;
+        i = inputdom2.value;
+        pmt = inputdom3.value;
+        fv = inputdom5.value;
+
+        I = Math.pow(1 + i, n);
+        pv = pmt * (1 - 1 / I) / i - fv / I;
+
+        document.getElementById('demo').innerHTML = pv;
+      } function funFV() {
+        n = inputdom1.value;
+        i = inputdom2.value;
+        pmt = inputdom3.value;
+        pv = inputdom4.value;
+
+        I = Math.pow(1 + i, n);
+        fv = pv * I - pmt * (I - 1) / i;
+
+        document.getElementById('demo').innerHTML = fv;
       }
-      function calFV(pv,pmt,n,i){
-        I=Math.pow(1+i,n);
-        fv=pv*I-pmt*(I-1)/i;
-        return fv;
-      }
-      function calPV(n,i,pmt,fv){
-        I=Math.pow(1+i,n);
-        pv=pmt*(1-1/I)/i-fv/I;
-        return pv;
-      }
-      function calPMT(pv,fv,n,i){
-        I=Math.pow(1+i,n);
-        pmt=i*(I*pv-fv)/(I-1);
-        return pmt;
-      }
-      function calN(pv,fv,i,pmt){
-        a=(fv-pmt/i)/(pv-pmt/i);
-        n=Math.log(a)/Math.log(1+i);
-        return n;
-      }
-    
     </script>
-
 </body>
 
 </html>
